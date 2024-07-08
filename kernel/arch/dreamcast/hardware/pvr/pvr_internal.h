@@ -224,6 +224,9 @@ typedef struct {
     uint32  to_txr_addr[2];
 
     uint32  dr_used;
+
+    // Callback to call before the start of rendering, may be NULL
+    pvr_before_render_hook_t isp_start_callback;
 } pvr_state_t;
 
 /* There will be exactly one of these in KOS (in pvr_globals.c) */

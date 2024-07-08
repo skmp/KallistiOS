@@ -42,6 +42,13 @@ void pvr_set_zclip(float zc) {
     pvr_state.zclip = zc;
 }
 
+/* Set a callback to be called before rendering starts */
+pvr_before_render_hook_t pvr_set_before_render_callback(pvr_before_render_hook_t callback) {
+    pvr_before_render_hook_t rv = pvr_state.isp_start_callback;
+    pvr_state.isp_start_callback = callback;
+    return rv;
+}
+
 /* Return the current VBlank count */
 int pvr_get_vbl_count(void) {
     return pvr_state.vbl_count;
@@ -246,6 +253,10 @@ void pvr_begin_queued_render(void) {
 
     // XXX Do we _really_ need this every time?
     // SETREG(PVR_FB_CFG_2, 0x00000009);        /* Alpha mode */
+
+    if (pvr_state.isp_start_callback)
+        pvr_state.isp_start_callback();
+
     PVR_SET(PVR_ISP_START, PVR_ISP_START_GO);   /* Start render */
 }
 

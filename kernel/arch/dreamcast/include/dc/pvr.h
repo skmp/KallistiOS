@@ -1459,6 +1459,30 @@ void pvr_set_shadow_scale(int enable, float scale_value);
 */
 void pvr_set_zclip(float zc);
 
+/** \brief   PVR Before render callback type.
+    \ingroup pvr_global
+
+    Functions that act as callbacks for before render hook should be of this type.
+    These functions will be called right before writing PVR_ISP_START_GO to PVR_ISP_START.
+*/
+typedef void (*pvr_before_render_hook_t)();
+
+
+/** \brief   Sets the callback to be called right before render is started
+    \ingroup pvr_global
+
+    This function sets the callback to be called right before PVR_ISP_START_GO
+    is written to PVR_ISP_START. This is useful for debugging and frame dumping
+    uses.
+
+
+    \param  callback        A function to call before the start of rendering
+
+    \returns                Previously set callback, or NULL
+*/
+pvr_before_render_hook_t pvr_set_before_render_callback(pvr_before_render_hook_t callback);
+
+
 /** \brief   Retrieve the current VBlank count.
     \ingroup pvr_stats
 
