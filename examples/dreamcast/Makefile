@@ -7,10 +7,10 @@
 
 DIRS = 2ndmix basic libdream kgl hello sound png vmu conio pvr video \
 	   lua parallax dreameye filesystem sd lightgun keyboard sdl dev rumble \
-	   micropython cd
+	   micropython
 
 ifneq ($(KOS_SUBARCH), naomi)
-	DIRS += network modem g1ata
+	DIRS += network modem g1ata cd
 endif
 
 ifdef KOS_CCPLUS

@@ -932,7 +932,7 @@ static int iso_ioctl(void *h, int cmd, va_list ap) {
     }
 
     switch (cmd) {
-        case IOCTL_ISO9660_GET_SECTOR:
+        case IOCTL_ISO9660_GET_FIRST_EXTENT:
             return fh[fd].first_extent;
         default:
             errno = EINVAL;

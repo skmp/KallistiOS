@@ -35,8 +35,8 @@ __BEGIN_DECLS
 #define TIOCGETA TCGETS
 #endif
 
-#ifndef IOCTL_ISO9660_GET_SECTOR
-#define IOCTL_ISO9660_GET_SECTOR 0x5601
+#ifndef IOCTL_ISO9660_GET_FIRST_EXTENT
+#define IOCTL_ISO9660_GET_FIRST_EXTENT 0x5601
 #endif
 
 /* Define ioctl as an alias for fs_ioctl */
