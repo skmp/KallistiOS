@@ -83,7 +83,7 @@ void *pvr_int_sbrk(size_t amt) {
 
 /* Allocate a chunk of memory from texture space; the returned value
    will be relative to the base of texture memory (zero-based) */
-pvr_ptr_t pvr_mem_malloc(size_t size) {
+__weak pvr_ptr_t pvr_mem_malloc(size_t size) {
     uint32_t rv32;
     memctl_t    *ctl;
 
@@ -112,7 +112,7 @@ pvr_ptr_t pvr_mem_malloc(size_t size) {
 }
 
 /* Free a previously allocated chunk of memory */
-void pvr_mem_free(pvr_ptr_t chunk) {
+__weak void pvr_mem_free(pvr_ptr_t chunk) {
     uint32_t    ra;
     memctl_t    *ctl, *tmp;
     int     found;
@@ -151,7 +151,7 @@ void pvr_mem_free(pvr_ptr_t chunk) {
 }
 
 /* Check the memory block list to see what's allocated */
-void pvr_mem_print_list(void) {
+__weak void pvr_mem_print_list(void) {
     memctl_t    *ctl;
 
     if(!__is_defined(PVR_KM_DBG))
@@ -175,7 +175,7 @@ static size_t pvr_mem_available_int(void) {
     return mi.arena - mi.uordblks;
 }
 
-size_t pvr_mem_available(void) {
+__weak size_t pvr_mem_available(void) {
     if(!pvr_mem_base)
         return 0;
 
@@ -186,7 +186,7 @@ size_t pvr_mem_available(void) {
 /* Reset the memory pool, equivalent to freeing all textures currently
    residing in RAM. This _must_ be done on a mode change, configuration
    change, etc. */
-void pvr_mem_reset(void) {
+__weak void pvr_mem_reset(void) {
     if(!pvr_state.valid)
         pvr_mem_base = NULL;
     else {
@@ -196,7 +196,7 @@ void pvr_mem_reset(void) {
 }
 
 /* Print some statistics (like mallocstats) */
-void pvr_mem_stats(void) {
+__weak void pvr_mem_stats(void) {
     printf("pvr_mem_stats():\n");
     pvr_int_malloc_stats();
     printf("max sbrk base: %08lx\n", (uint32_t)pvr_mem_base);
