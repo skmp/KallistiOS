@@ -90,6 +90,14 @@ __weak size_t pvr_mem_available(void);
 */
 __weak void pvr_mem_reset(void);
 
+/** \brief   Set the the PVR RAM base address.
+    \ingroup pvr_mem_mgmt
+
+    This sets the base address for texture allocations.
+    pvr_mem_reset should be called after calling this function.
+*/
+__weak void pvr_mem_initialize(pvr_ptr_t pvr_texture_base);
+
 /** \brief   Print the list of allocated blocks in the PVR RAM pool.
     \ingroup pvr_mem_mgmt
 

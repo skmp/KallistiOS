@@ -186,13 +186,14 @@ __weak size_t pvr_mem_available(void) {
 /* Reset the memory pool, equivalent to freeing all textures currently
    residing in RAM. This _must_ be done on a mode change, configuration
    change, etc. */
-__weak void pvr_mem_reset(void) {
-    if(!pvr_state.valid)
-        pvr_mem_base = NULL;
-    else {
-        pvr_mem_base = (pvr_ptr_t)(PVR_RAM_INT_BASE + pvr_state.texture_base);
+__weak void pvr_mem_reset(void) {    
+    if (pvr_mem_base != NULL) {
         pvr_int_mem_reset();
     }
+}
+
+__weak void pvr_mem_initialize(pvr_ptr_t pvr_texture_base) {
+    pvr_mem_base = pvr_texture_base;
 }
 
 /* Print some statistics (like mallocstats) */
