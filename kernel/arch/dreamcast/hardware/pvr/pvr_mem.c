@@ -7,7 +7,6 @@
 
 #include <assert.h>
 #include <dc/pvr.h>
-#include "pvr_internal.h"
 #include <stdio.h>
 
 #include <malloc.h> /* For the struct mallinfo defs */
